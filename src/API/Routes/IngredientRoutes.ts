@@ -1,7 +1,10 @@
 import { FastifyInstance } from "fastify";
+import { IngredientController } from "../Controllers/IngredientControlle";
 
 export const IngredientRoutes = async (fastify: FastifyInstance) => {
-  fastify.get("/", () => {
-    return { ok: "ok" };
-  });
+  const controller = new IngredientController();
+  fastify.get("/", controller.getAll);
+  fastify.post("/", controller.create);
+  fastify.put("/:id", controller.update);
+  fastify.delete("/:id", controller.delete);
 };
