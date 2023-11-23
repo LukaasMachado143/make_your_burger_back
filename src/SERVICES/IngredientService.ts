@@ -49,13 +49,8 @@ export class IngredientService implements IIngredientService {
       message: "",
     };
     try {
-      const foundedIngredient: Ingredient | null =
-        await this._repository.getById(+id);
-      if (!foundedIngredient) {
-        response.success = false;
-        response.message = "Ingredient not Found, try other id !";
-        return response;
-      }
+      const isExisting = await this.checkExistence(id);
+      if (isExisting.success == false) return isExisting;
       await this._repository.delete(+id);
       response.success = true;
       response.message = "Deleted Successfully !";
@@ -74,13 +69,8 @@ export class IngredientService implements IIngredientService {
       message: "",
     };
     try {
-      const foundedIngredient: Ingredient | null =
-        await this._repository.getById(+id);
-      if (!foundedIngredient) {
-        response.success = false;
-        response.message = "Ingredient not Found, try other id !";
-        return response;
-      }
+      const isExisting = await this.checkExistence(id);
+      if (isExisting.success == false) return isExisting;
       await this._repository.update(+id, name);
       response.success = true;
       response.message = "Updated Successfully !";
@@ -92,5 +82,21 @@ export class IngredientService implements IIngredientService {
     }
 
     return response;
+  }
+
+  private async checkExistence(id: number) {
+    const foundedIngredient: Ingredient | null = await this._repository.getById(
+      +id
+    );
+    if (!foundedIngredient) {
+      return {
+        success: false,
+        message: "Ingredient not Found, try other id !",
+      };
+    }
+    return {
+      success: true,
+      message: "",
+    };
   }
 }
