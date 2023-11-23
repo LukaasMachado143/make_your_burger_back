@@ -1,0 +1,25 @@
+{
+  "name": "make_your_burger_back",
+  "version": "1.0.0",
+  "description": "Api Rest Full para o projeto make your burger.",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LukaasMachado143/make_your_burger_back.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "JavaScript",
+    "TypeScript",
+    "API",
+    "RestFull",
+    "Rest",
+    "Prisma",
+    "Postgres"
+  ],
+  "author": "Lucas Machado",
+  "license": "ISC"
+}
