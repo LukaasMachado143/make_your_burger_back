@@ -19,6 +19,21 @@ export class IngredientController {
     }
   }
 
+  async getFormatedList(request: FastifyRequest, reply: FastifyReply) {
+    const service: IIngredientService = new IngredientService();
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
+    try {
+      const response: GeneralResponse = await service.getFormatedList();
+      return response;
+    } catch (error) {
+      response.message = "Internal Error, try again !";
+      return reply.status(500).send(response);
+    }
+  }
+
   async create(
     request: FastifyRequest<{ Body: Ingredient }>,
     reply: FastifyReply

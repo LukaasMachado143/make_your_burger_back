@@ -24,6 +24,49 @@ export class IngredientService implements IIngredientService {
 
     return response;
   }
+  async getFormatedList(): Promise<GeneralResponse> {
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
+    try {
+      const ingredientList: Ingredient[] = await this._repository.getAll();
+      const groupedByType = ingredientList.reduce(
+        (acc: any, ingredient: Ingredient) => {
+          const { type, id, name } = ingredient;
+
+          if (!acc[type]) {
+            acc[type] = [];
+          }
+          console.log(acc);
+          acc[type].push({
+            id,
+            name,
+          });
+
+          return acc;
+        },
+        {}
+      );
+
+      const formatedList = Object.keys(groupedByType).map((type) => {
+        return {
+          type,
+          list: groupedByType[type],
+        };
+      });
+
+      response.success = true;
+      response.message = "ok";
+      response.data = formatedList;
+    } catch (error) {
+      response.success = false;
+      response.message;
+      response.error = error;
+    }
+
+    return response;
+  }
   async create(newIngredient: Ingredient): Promise<GeneralResponse> {
     const response: GeneralResponse = {
       success: false,
