@@ -76,4 +76,24 @@ export class BurgerRequestController {
       return response;
     }
   }
+  async updateStatus(
+    request: FastifyRequest<{ Params: { id: string; status: string } }>,
+    reply: FastifyReply
+  ) {
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
+    try {
+      const service: IBurgerRequestService = new BurgerRequestService();
+      const id: string = request.params.id;
+      const status: string = request.params.status;
+      return await service.updateStatus(id,status);
+    } catch (error) {
+      response.success = false;
+      response.message = "Internal Error !";
+      response.error = error;
+      return response;
+    }
+  }
 }

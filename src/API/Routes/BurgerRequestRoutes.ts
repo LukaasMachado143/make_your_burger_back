@@ -7,4 +7,5 @@ export const BurgerRequestRoutes = async (fastify: FastifyInstance) => {
   fastify.get("/table", controller.getTable);
   fastify.post("/", controller.create);
   fastify.delete("/:id", controller.delete);
+  fastify.patch("/:id/:status", controller.updateStatus);
 };

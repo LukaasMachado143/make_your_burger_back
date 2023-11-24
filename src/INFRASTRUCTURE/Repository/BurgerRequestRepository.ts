@@ -3,6 +3,15 @@ import { IBurgerRequestRepository } from "../../CORE/Interfaces/IBurgerRequestRe
 import { prismaClient } from "../DB/prisma";
 
 export class BurgerRequestRepository implements IBurgerRequestRepository {
+  async updateStatus(id: string, status: string): Promise<void> {
+    await prismaClient.burgerRequest.update({
+      where: { id: +id },
+      data: {
+        status,
+      },
+    });
+    return;
+  }
   async delete(id: string): Promise<void> {
     await prismaClient.burgerRequest.delete({ where: { id: +id } });
     return;

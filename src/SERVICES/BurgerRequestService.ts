@@ -7,6 +7,16 @@ import { BurgerRequestTable } from "../CORE/Types/BurgerRequest/BurgerRequestTab
 
 export class BurgerRequestService implements IBurgerRequestService {
   private _repository: IBurgerRequestRepository = new BurgerRequestRepository();
+  async updateStatus(id: string, status: string): Promise<GeneralResponse> {
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
+    await this._repository.updateStatus(id, status);
+    response.success = true;
+    response.message = "Updated Successfully";
+    return response;
+  }
   async delete(id: string): Promise<GeneralResponse> {
     const response: GeneralResponse = {
       success: false,
@@ -17,7 +27,6 @@ export class BurgerRequestService implements IBurgerRequestService {
     response.message = "Deleted Successfully";
     return response;
   }
-
   async getTable(): Promise<GeneralResponse> {
     const response: GeneralResponse = {
       success: false,
