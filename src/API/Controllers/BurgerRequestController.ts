@@ -18,7 +18,6 @@ export class BurgerRequestController {
       const data: BurgerRequest = request.body;
       return await service.create(data);
     } catch (error) {
-      console.log(error);
       response.success = false;
       response.message = "Internal Error !";
       response.error = error;
@@ -35,7 +34,6 @@ export class BurgerRequestController {
       const service: IBurgerRequestService = new BurgerRequestService();
       return await service.getAll();
     } catch (error) {
-      console.log(error);
       response.success = false;
       response.message = "Internal Error !";
       response.error = error;

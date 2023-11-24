@@ -11,7 +11,7 @@ export class BurgerRequestRepository implements IBurgerRequestRepository {
     });
   }
   async create(data: any): Promise<void> {
-    const created = await prismaClient.burgerRequest.create({
+    await prismaClient.burgerRequest.create({
       data: {
         name: data.name,
         ingredients: {
@@ -19,7 +19,6 @@ export class BurgerRequestRepository implements IBurgerRequestRepository {
         },
       },
     });
-    console.log(created);
     return;
   }
 }
