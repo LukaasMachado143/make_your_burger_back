@@ -4,7 +4,6 @@ import { IngredientRoutes } from "./API/Routes/IngredientRoutes";
 import { BurgerRequestRoutes } from "./API/Routes/BurgerRequestRoutes";
 
 const server: FastifyInstance = fastify();
-
 server.register(fastifyCors);
 server.register(IngredientRoutes, { prefix: "/ingredient" });
 server.register(BurgerRequestRoutes, { prefix: "/burgerRequest" });
