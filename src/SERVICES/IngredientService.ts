@@ -38,7 +38,6 @@ export class IngredientService implements IIngredientService {
           if (!acc[type]) {
             acc[type] = [];
           }
-          console.log(acc);
           acc[type].push({
             id,
             name,
@@ -98,7 +97,6 @@ export class IngredientService implements IIngredientService {
       response.success = true;
       response.message = "Deleted Successfully !";
     } catch (error) {
-      console.log(error);
       response.success = false;
       response.message;
       response.error = error;
@@ -118,7 +116,6 @@ export class IngredientService implements IIngredientService {
       response.success = true;
       response.message = "Updated Successfully !";
     } catch (error) {
-      console.log(error);
       response.success = false;
       response.message;
       response.error = error;
@@ -127,19 +124,17 @@ export class IngredientService implements IIngredientService {
     return response;
   }
 
-  private async checkExistence(id: number) {
+  private async checkExistence(id: number): Promise<GeneralResponse> {
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
     const foundedIngredient: Ingredient | null = await this._repository.getById(
       +id
     );
-    if (!foundedIngredient) {
-      return {
-        success: false,
-        message: "Ingredient not Found, try other id !",
-      };
-    }
-    return {
-      success: true,
-      message: "",
-    };
+    if (!foundedIngredient)
+      response.message = "Ingredient not Found, try other id !";
+    else response.success = true;
+    return response;
   }
 }
