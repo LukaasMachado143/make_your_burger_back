@@ -40,4 +40,21 @@ export class BurgerRequestController {
       return response;
     }
   }
+
+  
+  async getTable(request: FastifyRequest, reply: FastifyReply) {
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
+    try {
+      const service: IBurgerRequestService = new BurgerRequestService();
+      return await service.getTable();
+    } catch (error) {
+      response.success = false;
+      response.message = "Internal Error !";
+      response.error = error;
+      return response;
+    }
+  }
 }
