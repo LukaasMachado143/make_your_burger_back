@@ -58,7 +58,7 @@ export class BurgerRequestController {
   }
 
   async delete(
-    request: FastifyRequest<{ Params: { id: number } }>,
+    request: FastifyRequest<{ Params: { id: string } }>,
     reply: FastifyReply
   ) {
     const response: GeneralResponse = {
@@ -67,7 +67,7 @@ export class BurgerRequestController {
     };
     try {
       const service: IBurgerRequestService = new BurgerRequestService();
-      const id: number = request.params.id;
+      const id: string = request.params.id;
       return await service.delete(id);
     } catch (error) {
       response.success = false;
