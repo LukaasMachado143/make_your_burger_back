@@ -11,9 +11,18 @@ datasource db {
 }
 
 model Ingredient {
-  id   Int    @id @default(autoincrement())
-  type String
-  name String
+  id             Int             @id @default(autoincrement())
+  type           String
+  name           String
+  burgerRequests BurgerRequest[]
 
   @@map("Ingredients")
+}
+
+model BurgerRequest {
+  id          Int          @id @default(autoincrement())
+  name        String
+  ingredients Ingredient[]
+
+  @@map("BurgerRequests")
 }
