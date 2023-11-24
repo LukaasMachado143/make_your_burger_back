@@ -1,4 +1,4 @@
-import { BurgerRequest, Ingredient } from "@prisma/client";
+import { BurgerRequest } from "@prisma/client";
 import { IBurgerRequestRepository } from "../../CORE/Interfaces/IBurgerRequestRepository";
 import { prismaClient } from "../DB/prisma";
 
