@@ -4,7 +4,9 @@
   "description": "Api Rest Full para o projeto make your burger.",
   "main": "server.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src",
+    "vercel-build": "npx prisma migrate deploy && tsup src"
   },
   "repository": {
     "type": "git",
