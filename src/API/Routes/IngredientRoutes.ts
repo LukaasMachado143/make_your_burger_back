@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { IngredientController } from "../Controllers/IngredientControlle";
+import { IngredientController } from "../Controllers/IngredientController";
 
 export const IngredientRoutes = async (fastify: FastifyInstance) => {
   const controller = new IngredientController();
