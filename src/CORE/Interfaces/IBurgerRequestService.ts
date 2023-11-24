@@ -4,4 +4,5 @@ export interface IBurgerRequestService {
   getAll(): Promise<GeneralResponse>;
   getTable(): Promise<GeneralResponse>;
   create(data: BurgerRequest): Promise<GeneralResponse>;
+  delete(id: string): Promise<GeneralResponse>;
 }

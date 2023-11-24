@@ -41,7 +41,6 @@ export class BurgerRequestController {
     }
   }
 
-  
   async getTable(request: FastifyRequest, reply: FastifyReply) {
     const response: GeneralResponse = {
       success: false,
@@ -50,6 +49,26 @@ export class BurgerRequestController {
     try {
       const service: IBurgerRequestService = new BurgerRequestService();
       return await service.getTable();
+    } catch (error) {
+      response.success = false;
+      response.message = "Internal Error !";
+      response.error = error;
+      return response;
+    }
+  }
+
+  async delete(
+    request: FastifyRequest<{ Params: { id: number } }>,
+    reply: FastifyReply
+  ) {
+    const response: GeneralResponse = {
+      success: false,
+      message: "",
+    };
+    try {
+      const service: IBurgerRequestService = new BurgerRequestService();
+      const id: number = request.params.id;
+      return await service.delete(id);
     } catch (error) {
       response.success = false;
       response.message = "Internal Error !";
